@@ -24,3 +24,19 @@ LSTM architectures involves the memory cell which is controlled by three gates:
 3. **Output gate:** Controls what information is output from the memory cell.
 
 This allows LSTM networks to selectively retain or discard information as it flows through the network which allows them to learn long-term dependencies. The network has a hidden state which is like its short-term memory. This memory is updated using the current input, the previous hidden state and the current state of the memory cell.
+
+## Working of LSTM
+LSTM architecture has a chain structure that contains four neural networks and different memory blocks called cells.
+![gate_of_lstm](https://github.com/user-attachments/assets/7a2820cf-42dc-4422-80ac-a521abe31f32)
+
+<p align="center"><sup>LSTM Model </sup></p>
+1. Forget Gate
+The information that is no longer useful in the cell state is removed with the forget gate. Two inputs x<sub>t</sub> (input at the particular time) and h<sub>t-1</sub> (previous cell output) are fed to the gate and multiplied with weight matrices followed by the addition of bias. The resultant is passed through sigmoid activation function which gives output in range of [0,1]. If for a particular cell state the output is 0 or near to 0, the piece of information is forgotten and for output of 1 or near to 1, the information is retained for future use. 
+
+The equation for the forget gate is:
+
+  <img width="1105" height="71" alt="image" src="https://github.com/user-attachments/assets/822729ab-4023-414d-8664-b282753e7727" />
+
+Where:
+
+

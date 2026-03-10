@@ -38,5 +38,49 @@ The equation for the forget gate is:
   <img width="1105" height="71" alt="image" src="https://github.com/user-attachments/assets/822729ab-4023-414d-8664-b282753e7727" />
 
 Where:
+* **W**<sub>t</sub> represents the weight matrix associated with the forget gate.
+* [**h**<sub>t-1</sub>,**X**<sub>t</sub>] denotes the concatenation of the current input and the previous hidden state.
+* **b**<sub>t</sub> is the bias with the forget gate.
+* σ is the sigmoid activation function.
+![forget_gate](https://github.com/user-attachments/assets/e9adfdc1-e2fc-47cf-8974-67fec6d35f20)
+<p align="center">Forget Gate</p>
+
+## 2. Input gate
+The addition of useful information to the cell state is done by the input gate. First the information is regulated using the sigmoid function and filter the values to be remembered similar to the forget gate using inputs h<sub>t-1</sub> and X<sub>t</sub>. Then, a vector is created using tanh function that gives an output from -1 to +1 which contains all the possible values from h<sub>t-1</sub> and X<sub>t</sub>. At last the values of the vector and the regulated values are multiplied to obtain the useful information. The equation for the input gate is:
+
+<img width="1105" height="131" alt="image" src="https://github.com/user-attachments/assets/5d491551-c54b-4443-8272-0fd35b7967e3" />
+We multiply the previous state by f<sub>t</sub> effectively filtering out the information we had decided to ignore earlier. Then we add  
+i<sub>t</sub> ⊙ C<sub>t</sub> which represents the new candidate values scaled by how much we decided to update each state value.
+
+<img width="1101" height="82" alt="image" src="https://github.com/user-attachments/assets/23abe873-fd53-4ed3-b6d2-74a196c5d02a" />
+
+where
+* ⊙ denotes element-wise multiplication*
+* tanh is activation function*
+
+![input_gate](https://github.com/user-attachments/assets/a8b7b91c-4050-457d-86d1-2a545feb7e9a)
+
+## 3. Output gate
+
+The output gate is responsible for deciding what part of the current cell state should be sent as the hidden state (output) for this time step.First, the gate uses a sigmoid function to determine which information from the current cell state will be output. This is done using the previous hidden state h<sub>t-1</sub> and the current input x<sub>t</sub>:
+<img width="1108" height="85" alt="image" src="https://github.com/user-attachments/assets/2d5ae26e-82c3-4c16-8d31-b839ed9758a1" />
+
+Next, the current cell state C<sub>t</sub> s passed through a tanh activation to scale its values between −1 −1 and +1 +1. Finally, this transformed cell state is multiplied element-wise with O<sub>t</sub> to produce the hidden state h<sub>t</sub>:
+
+<img width="1110" height="82" alt="image" src="https://github.com/user-attachments/assets/7e97d8ab-2d23-42a2-a0c4-1318cd49e990" />
+
+Here:
+* O<sub>t</sub> is the output gate activation.*
+* C<sub>t</sub> is the current cell state.
+* ⊙ represents element-wise multiplication.
+* σ is the sigmoid activation function.
+
+This hidden state h<sub>t</sub> is then passed to the next time step and can also be used for generating the output of the network.
+
+![output_gate](https://github.com/user-attachments/assets/f22cf399-4813-4f9f-8e3a-7457d73687bb)
+<p><sup>Output Gate</sup></p>
+
+
+
 
 
